@@ -1,415 +1,356 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Global Exercise Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>Calculadora Tibia</title>
 <style>
-body{
-    font-family: 'Roboto', Arial, sans-serif;
-    margin:0;
-    padding:40px 20px;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:#fff;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body { 
+    font-family: 'Roboto', Arial, sans-serif; 
+    background: #101020; 
+    color: #e0e0e0; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    padding: 20px; 
+    margin: 0; 
 }
 
-.wrapper{
-    max-width: 1350px;
-    margin: auto;
+h1 { 
+    font-size: 28px; 
+    margin-bottom: 25px; 
+    text-align: center; 
+    color: #e0e0e0; 
+    text-shadow: none; 
 }
 
-h1{
-    text-align:center;
-    font-size:42px;
-    margin-bottom:50px;
-    background: linear-gradient(90deg,#00e0ff,#4facfe);
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: 1px;
+.container { 
+    background: #1a1a2e; 
+    padding: 25px; 
+    border-radius: 15px; 
+    width: 700px; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
 }
 
-.container{
+h2 { 
+    font-size: 20px; 
+    margin-bottom: 12px; 
+    border-bottom: 1px solid rgba(255,255,255,0.2); 
+    padding-bottom: 4px; 
+    color: #e0e0e0; 
+}
+
+.row { 
+    display: flex; 
+    gap: 12px; 
+    align-items: center; 
+    justify-content: center; 
+    flex-wrap: wrap; 
+}
+
+.input-group {
     display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.card{
-    background: rgba(0,0,0,0.7);
-    padding: 35px 25px;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    flex: 1 1 450px;
-    min-width: 380px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover{
-    transform: translateY(-10px);
-    box-shadow: 0 35px 80px rgba(0,0,0,0.85);
-}
-
-.card h2{
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 30px;
-    background: linear-gradient(90deg,#ff9a9e,#fad0c4);
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-.row{
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
-}
-
-.field{
-    flex:1;
-    min-width:100px;
-    display:flex;
-    flex-direction:column;
-}
-
-label{
-    font-size:14px;
-    margin-bottom:4px;
-    color:#ccc;
-}
-
-input, select{
-    padding: 12px 15px;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 200px;
+    background: rgba(255,255,255,0.05);
+    padding: 10px 15px;
     border-radius: 12px;
-    border: none;
-    background: #2c2c2c;
-    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    transition: all 0.2s;
+}
+
+.input-group:hover {
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 3px 8px rgba(255,255,255,0.2);
+}
+
+.input-group label {
+    margin-bottom: 6px;
     font-size: 14px;
-    outline: none;
-    transition: 0.2s;
+    font-weight: 600;
+    text-align: center;
+    color: #e0e0e0;
 }
 
-input::placeholder{
-    color: #aaa;
-    font-weight: 500;
+input { 
+    padding: 8px 12px; 
+    border-radius: 10px; 
+    border: 1px solid rgba(255,255,255,0.3); 
+    font-size: 15px; 
+    background: rgba(255,255,255,0.1); 
+    color: #fff; 
+    font-weight: 700; 
+    text-align: center; 
+    width: 120px; 
+    height: 38px; 
+    transition: all 0.2s; 
 }
 
-input:focus, select:focus{
-    background: #3a3a3a;
-    box-shadow: 0 0 12px #ff9a9e;
+input:focus { 
+    outline: none; 
+    border-color: #66ff88; 
+    background: rgba(102,255,136,0.15); 
 }
 
-.checkboxGroup{
-    display:flex;
-    gap:20px;
-    margin-bottom:15px;
-    align-items:center;
+.button-row { 
+    display: flex; 
+    gap: 15px; 
+    justify-content: center; 
+    flex-wrap: wrap; 
 }
 
-.checkboxGroup label{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    font-size:14px;
-    color:#ccc;
+.calc-card { 
+    color: #fff; 
+    font-weight: 600; 
+    font-size: 16px; 
+    padding: 12px 20px; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.5); 
+    text-align: center; 
+    background: #222238; 
+    transition: all 0.2s; 
 }
 
-.result{
-    margin-top: 25px;
-    padding: 22px;
-    border-radius: 20px;
-    background: linear-gradient(145deg,#0a0f18,#05070c);
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.9),0 0 25px rgba(255,255,255,0.1);
-    font-size: 16px;
-    line-height: 1.8;
+.calc-card:hover { 
+    transform: scale(1.05); 
+    box-shadow: 0 5px 15px rgba(255,255,255,0.3); 
+    background: #33334a;
 }
 
-.result div{
-    margin-bottom:10px;
+.resultadoValor { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 12px; 
+    justify-content: center; 
+    margin-top: 10px; 
 }
 
-.bigValue{
-    font-size: 24px;
-    color: #ffcb6b;
-    font-weight: 700;
+.valor-box { 
+    flex: 1 1 120px; 
+    background: rgba(255,255,255,0.03); 
+    padding: 12px; 
+    border-radius: 12px; 
+    font-size: 14px; 
+    line-height: 1.4; 
+    text-align: center; 
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-.progressWrap{
-    margin-top:12px;
-    background:#0b1118;
-    border-radius:14px;
-    overflow:hidden;
-    height:16px;
-    box-shadow:inset 0 0 8px rgba(0,0,0,.8);
+.valor-box span { 
+    display: block; 
+    font-weight: bold; 
+    margin-bottom: 4px; 
 }
 
-.progressBar{
-    height:100%;
-    background:linear-gradient(90deg,#ff9a9e,#fad0c4);
-    width:0%;
-    transition: width 0.4s;
+.precoKKBox { 
+    flex: 2 1 100%; 
+    background: rgba(255,255,255,0.06); 
+    color: #e0e0e0; 
+    font-size: 22px; 
+    font-weight: 700; 
+    padding: 14px; 
+    border-radius: 12px; 
+    text-align: center; 
+    margin-top: 8px; 
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4); 
 }
 
-.icon{
-    margin-right:6px;
+.resultadoLucro { 
+    display: flex; 
+    gap: 12px; 
+    flex-wrap: wrap; 
+    margin-top: 12px; 
 }
 
-@media(max-width:1000px){
-    .container{
-        flex-direction: column;
-        gap: 25px;
-    }
+.resultadoLucro .diario, 
+.resultadoLucro .semanal, 
+.resultadoLucro .mensal { 
+    color: #fff; 
+    padding: 12px; 
+    border-radius: 12px; 
+    font-weight: bold; 
+    flex: 1; 
+    text-align: center; 
+    font-size: 15px; 
+    background: rgba(255,255,255,0.05); 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.tempoItem { 
+    flex: 1 1 100%; 
+    background: rgba(255,255,255,0.05); 
+    color: #fff; 
+    padding: 14px; 
+    border-radius: 12px; 
+    font-weight: bold; 
+    font-size: 15px; 
+    text-align: center; 
+    line-height: 1.6; 
+    margin-top: 8px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.hidden { display: none; }
+
+@media (max-width: 750px){ 
+    .container { width: 95%; } 
+    .row { flex-direction: column; } 
+    input { width: 100%; max-width: 100%; } 
+    .precoKKBox { font-size: 20px; } 
+    .calc-card { width: 100%; font-size: 15px; } 
+    .row.two-inputs { flex-direction: column; gap: 15px; }
+    .input-group { flex: 1 1 100%; align-items: center; }
+}
+
+.row.two-inputs { 
+    justify-content: center; 
+    gap: 15px; 
 }
 </style>
 </head>
 <body>
 
-<div class="wrapper">
-<h1>⚔️ Global Exercise Calculator</h1>
-
+<h1>Calculadora Tibia</h1>
 <div class="container">
+    <h2>Escolha a Calculadora</h2>
+    <div class="button-row">
+        <div class="calc-card" id="btnMarket">💎 Calculadora KK</div>
+        <div class="calc-card" id="btnItem">🪙 Valores dos Itens</div>
+    </div>
 
-<!-- CARD 1 -->
-<div class="card">
-<h2>🧮 Exercise Weapon</h2>
+    <div id="calcMarket">
+        <h2>💎 Calculadora KK</h2>
+        <div class="row two-inputs">
+            <div class="input-group">
+                <label for="precoTC">💰 Preço de 250 TC (R$)</label>
+                <input type="text" id="precoTC" value="56">
+            </div>
+            <div class="input-group">
+                <label for="goldPorTC">🪙 Gold por 1 TC</label>
+                <input type="text" id="goldPorTC" value="40.000">
+            </div>
+        </div>
 
-<div class="row">
-<div class="field">
-    <label for="current">Skill Atual</label>
-    <input id="current" type="number" value="104" placeholder="Ex: 104">
-</div>
-<div class="field">
-    <label for="target">Skill Alvo</label>
-    <input id="target" type="number" value="105" placeholder="Ex: 105">
-</div>
-<div class="field">
-    <label for="percent">% Restante</label>
-    <input id="percent" type="number" value="100" placeholder="Ex: 100">
-</div>
-</div>
+        <div class="precoKKBox" id="valor1kk">💰 Preço do KK: R$ 0,00</div>
+        <div class="resultadoValor" id="detalhesMarket"></div>
 
-<div class="row">
-<div class="field">
-    <label for="vocation">Vocação</label>
-    <select id="vocation">
-        <option value="monk">Monk</option>
-        <option value="knight">Knight</option>
-        <option value="paladin">Paladin</option>
-        <option value="druid">Druid</option>
-        <option value="sorcerer">Sorcerer</option>
-    </select>
-</div>
-<div class="field">
-    <label for="skill">Tipo de Skill</label>
-    <select id="skill">
-        <option value="fist">Fist</option>
-        <option value="melee">Melee</option>
-        <option value="distance">Distance</option>
-        <option value="shield">Shield</option>
-        <option value="magic">Magic</option>
-    </select>
-</div>
-</div>
+        <h2>⚡ Lucro Diário</h2>
+        <div class="row">
+            <label for="farmDia">🧾 KK farmado no dia:</label>
+            <input type="text" id="farmDia" value="1">
+        </div>
+        <div class="resultado resultadoLucro" id="resultadoLucro"></div>
+    </div>
 
-<div class="checkboxGroup">
-<label><span class="icon">🪑</span><input type="checkbox" id="dummy"> Training Dummy</label>
-<label><span class="icon">⚡</span><input type="checkbox" id="double"> Double Skill Event</label>
-</div>
-
-<div class="result" id="result"></div>
-</div>
-
-<!-- CARD 2 -->
-<div class="card">
-<h2>✨ Varinhas</h2>
-
-<div class="row">
-<div class="field">
-    <label for="current2">Skill Atual</label>
-    <input id="current2" type="number" value="104" placeholder="Ex: 104">
-</div>
-<div class="field">
-    <label for="percent2">% Restante</label>
-    <input id="percent2" type="number" value="100" placeholder="Ex: 100">
-</div>
-</div>
-
-<div class="row">
-<div class="field">
-    <label for="regular2">Exercise Regular</label>
-    <input id="regular2" type="number" value="0" placeholder="Ex: 0">
-</div>
-<div class="field">
-    <label for="durable2">Exercise Durable</label>
-    <input id="durable2" type="number" value="0" placeholder="Ex: 0">
-</div>
-<div class="field">
-    <label for="lasting2">Exercise Lasting</label>
-    <input id="lasting2" type="number" value="0" placeholder="Ex: 0">
-</div>
-</div>
-
-<div class="row">
-<div class="field">
-    <label for="vocation2">Vocação</label>
-    <select id="vocation2">
-        <option value="monk">Monk</option>
-        <option value="knight">Knight</option>
-        <option value="paladin">Paladin</option>
-        <option value="druid">Druid</option>
-        <option value="sorcerer">Sorcerer</option>
-    </select>
-</div>
-<div class="field">
-    <label for="skill2">Tipo de Skill</label>
-    <select id="skill2">
-        <option value="fist">Fist</option>
-        <option value="melee">Melee</option>
-        <option value="distance">Distance</option>
-        <option value="shield">Shield</option>
-        <option value="magic">Magic</option>
-    </select>
-</div>
-</div>
-
-<div class="checkboxGroup">
-<label><span class="icon">🪑</span><input type="checkbox" id="dummy2"> Training Dummy</label>
-<label><span class="icon">⚡</span><input type="checkbox" id="double2"> Double Skill Event</label>
-</div>
-
-<div class="result" id="result2"></div>
-<div class="progressWrap"><div class="progressBar" id="bar2"></div></div>
-</div>
-
-</div>
+    <div id="calcItem" class="hidden">
+        <h2>🪙 Valores dos Itens / Tempo para farmar</h2>
+        <div class="row">
+            <label for="itemGold">💎 Valor do Item (GC):</label>
+            <input type="text" id="itemGold" value="300.000.000">
+        </div>
+        <div class="tempoItem" id="tempoItem">
+            <div style="margin-bottom:8px;">💰 Valor do item: R$ 1.680,00</div>
+            <div>⏱️ Tempo para farmar: 1680,0 dias</div>
+        </div>
+    </div>
 </div>
 
 <script>
-// JS CORRIGIDO (mesmo que o original, só arrumei N())
-const vocation = {
-    knight:{magic:3,melee:1.1,fist:1.1,distance:1.4,shield:1.1},
-    paladin:{magic:1.4,melee:1.2,fist:1.2,distance:1.1,shield:1.1},
-    druid:{magic:1.1,melee:1.8,fist:1.5,distance:1.8,shield:1.5},
-    sorcerer:{magic:1.1,melee:2,fist:1.5,distance:2,shield:1.5},
-    monk:{magic:1.25,melee:1.4,fist:1.1,distance:1.5,shield:1.15}
-};
+const btnMarket = document.getElementById('btnMarket');
+const btnItem = document.getElementById('btnItem');
+const calcMarket = document.getElementById('calcMarket');
+const calcItem = document.getElementById('calcItem');
+const precoTCInput = document.getElementById('precoTC');
+const goldPorTCInput = document.getElementById('goldPorTC');
+const farmDiaInput = document.getElementById('farmDia');
+const itemGoldInput = document.getElementById('itemGold');
+const valor1kkDiv = document.getElementById('valor1kk');
+const detalhesMarketDiv = document.getElementById('detalhesMarket');
+const resultadoLucroDiv = document.getElementById('resultadoLucro');
+const tempoItemDiv = document.getElementById('tempoItem');
+let valorKKAtual = 0;
 
-const weaponPoints = {regular:300000,durable:1080000,lasting:8640000};
-const weaponTime = {regular:{charges:500,duration:1000,cost:347222},durable:{charges:1800,duration:3600,cost:1250000},lasting:{charges:14400,duration:28800,cost:10000000}};
-const BASE=1600;
-
-function Z(skillValue,voc,skill){
-    let i=vocation[voc][skill];
-    return BASE*(Math.pow(i,skillValue)-1)/(i-1);
-}
-
-function N(skillValue,voc,skill){
-    let i=vocation[voc][skill];
-    return BASE*Math.pow(i,skillValue); // CORRIGIDO
-}
-
-function pointsNeeded(current,target,percent,voc,skill){
-    let start=Z(current,voc,skill);
-    let end=Z(target,voc,skill);
-    let diff=end-start;
-    let p=percent/100;
-    if(target-current==1){
-        return diff*p;
-    } else {
-        let next=N(current,voc,skill);
-        return diff-next*(1-p);
-    }
-}
-
-function formatTime(sec){
-    let h=Math.floor(sec/3600);
-    let m=Math.floor((sec%3600)/60);
-    let s=Math.floor(sec%60);
-    return `${h>0?h+'h ':''}${m>0?m+'m ':''}${s}s`;
-}
-
-function calc(){
-    let current=parseInt(document.getElementById("current").value);
-    let target=parseInt(document.getElementById("target").value);
-    let percent=parseFloat(document.getElementById("percent").value);
-    let voc=document.getElementById("vocation").value;
-    let skill=document.getElementById("skill").value;
-    let dummy=document.getElementById("dummy").checked;
-    let dbl=document.getElementById("double").checked;
-
-    let pts=pointsNeeded(current,target,percent,voc,skill);
-    if(dummy) pts/=1.1;
-    if(dbl) pts/=2;
-
-    let lasting=Math.floor(pts/weaponPoints.lasting);
-    pts%=weaponPoints.lasting;
-    let durable=Math.floor(pts/weaponPoints.durable);
-    pts%=weaponPoints.durable;
-    let regular=Math.ceil(pts/weaponPoints.regular);
-
-    let totalTime = regular*weaponTime.regular.duration + durable*weaponTime.durable.duration + lasting*weaponTime.lasting.duration;
-    let totalCost = regular*weaponTime.regular.cost + durable*weaponTime.durable.cost + lasting*weaponTime.lasting.cost;
-
-    document.getElementById("result").innerHTML=`
-        <div>🗡️ Regular: ${regular}</div>
-        <div>🛡️ Durable: ${durable}</div>
-        <div>🔥 Lasting: ${lasting}</div>
-        <div>⏱️ Tempo estimado: ${formatTime(totalTime)}</div>
-        <div>💰 Custo total: ${totalCost.toLocaleString()} gp</div>
-    `;
-}
-
-function calcReach(){
-    let skill=parseInt(document.getElementById("current2").value);
-    let percent=parseFloat(document.getElementById("percent2").value);
-    let voc=document.getElementById("vocation2").value;
-    let sk=document.getElementById("skill2").value;
-    let regular=parseInt(document.getElementById("regular2").value);
-    let durable=parseInt(document.getElementById("durable2").value);
-    let lasting=parseInt(document.getElementById("lasting2").value);
-    let dummy=document.getElementById("dummy2").checked;
-    let dbl=document.getElementById("double2").checked;
-
-    let points= regular*weaponPoints.regular + durable*weaponPoints.durable + lasting*weaponPoints.lasting;
-    if(dummy) points*=1.1;
-    if(dbl) points*=2;
-
-    let start=Z(skill,voc,sk);
-    let next=N(skill,voc,sk);
-    let progress=(100-percent)/100;
-    let total=start+next*progress+points;
-
-    let newSkill=skill;
-    while(Z(newSkill+1,voc,sk)<=total){
-        newSkill++;
-    }
-
-    let currentStart=Z(newSkill,voc,sk);
-    let nextReq=N(newSkill,voc,sk);
-    let newPercent=((total-currentStart)/nextReq)*100;
-    let remaining=100-newPercent;
-    let gainedSkill=newSkill-skill;
-
-    let totalTime = regular*weaponTime.regular.duration + durable*weaponTime.durable.duration + lasting*weaponTime.lasting.duration;
-    let totalCost = regular*weaponTime.regular.cost + durable*weaponTime.durable.cost + lasting*weaponTime.lasting.cost;
-
-    document.getElementById("result2").innerHTML=`
-        <div>🎯 Skill final: <span class="bigValue">${newSkill}</span></div>
-        <div>📈 Progresso: Você ganhou ${gainedSkill} skill e faltam ${remaining.toFixed(2)}%</div>
-        <div>⏱️ Tempo estimado: ${formatTime(totalTime)}</div>
-        <div>💰 Custo total: ${totalCost.toLocaleString()} gp</div>
-    `;
-    document.getElementById("bar2").style.width=newPercent+"%";
-}
-
-document.querySelectorAll('input, select').forEach(el=>{
-    el.addEventListener('input',()=>{calc(); calcReach();});
+btnMarket.addEventListener('click', ()=>{
+    calcMarket.classList.remove('hidden');
+    calcItem.classList.add('hidden');
+});
+btnItem.addEventListener('click', ()=>{
+    calcItem.classList.remove('hidden');
+    calcMarket.classList.add('hidden');
+    atualizarItem();
 });
 
-window.addEventListener('load',()=>{calc(); calcReach();});
-</script>
+function formatNumber(n){ return parseFloat(n).toLocaleString('pt-BR', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+function formatGC(n){ return parseInt(n).toLocaleString('pt-BR'); }
 
+function parseInputDecimal(input){ return parseFloat(input.value.replace(/\./g,'').replace(',','.')) || 0; }
+function parseInputGC(input){ return parseInt(input.value.replace(/\./g,'')) || 0; }
+
+function atualizarValores(){
+    const precoTC = parseInputDecimal(precoTCInput);
+    const goldPorTC = parseInputGC(goldPorTCInput);
+    const goldFarmado = 1000000;
+    const tcBase = 250;
+    if(precoTC<=0 || goldPorTC<=0){ detalhesMarketDiv.innerHTML="Preencha todos os campos corretamente."; return; }
+    const valorPorTC = precoTC/tcBase;
+    const tcEquivalente = goldFarmado/goldPorTC;
+    const novoValorKK = tcEquivalente*valorPorTC;
+    valor1kkDiv.textContent = `💰 Preço do KK: R$ ${formatNumber(novoValorKK)}`;
+    valorKKAtual = novoValorKK;
+    detalhesMarketDiv.innerHTML=`
+        <div class="valor-box"><span>💰 Valor de 1 TC</span>R$ ${formatNumber(valorPorTC)}</div>
+        <div class="valor-box"><span>🛒 25 TC no market</span>${formatGC(goldPorTC*25)} GC</div>
+        <div class="valor-box"><span>🛒 250 TC no market</span>${formatGC(goldPorTC*250)} GC</div>
+    `;
+    atualizarLucro();
+    atualizarItem();
+}
+
+function atualizarLucro(){
+    const farmDia = parseInputGC(farmDiaInput);
+    if(farmDia<=0){ resultadoLucroDiv.innerHTML="Preencha corretamente."; return; }
+    const lucroDia = farmDia*valorKKAtual;
+    const lucroSemana = lucroDia*7;
+    const lucroMes = lucroDia*30;
+    resultadoLucroDiv.innerHTML=`
+        <div class="diario">💸 Diário: R$ ${formatNumber(lucroDia)}</div>
+        <div class="semanal">📅 Semanal: R$ ${formatNumber(lucroSemana)}</div>
+        <div class="mensal">🗓️ Mensal: R$ ${formatNumber(lucroMes)}</div>
+    `;
+}
+
+function atualizarItem(){
+    const itemGC = parseInputGC(itemGoldInput);
+    const farmDia = parseInputGC(farmDiaInput);
+    if(itemGC<=0){ tempoItemDiv.innerHTML = "💰 Valor do item: Preencha corretamente"; return; }
+    if(farmDia<=0){
+        tempoItemDiv.innerHTML = `<div style="margin-bottom:8px;">💰 Valor do item: R$ ${formatNumber((itemGC/1000000)*valorKKAtual)}</div>
+                                   <div>⏱️ Tempo para farmar: Preencha KK diário</div>`;
+        return;
+    }
+    const valorItem = (itemGC/1000000)*valorKKAtual;
+    const diasParaItem = valorItem/farmDia;
+    tempoItemDiv.innerHTML = `<div style="margin-bottom:8px;">💰 Valor do item: R$ ${formatNumber(valorItem)}</div>
+                              <div>⏱️ Tempo para farmar: ${diasParaItem.toFixed(1)} dias</div>`;
+}
+
+[goldPorTCInput,itemGoldInput].forEach(input=>{
+    input.addEventListener('input', ()=>{
+        let num = input.value.replace(/\D/g,'');
+        input.value = num.replace(/\B(?=(\d{3})+(?!\d))/g,".");
+        atualizarValores();
+    });
+});
+
+[precoTCInput,farmDiaInput].forEach(input=>{ input.addEventListener('input', atualizarValores); });
+
+atualizarValores();
+</script>
 </body>
 </html>
