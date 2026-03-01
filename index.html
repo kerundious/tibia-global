@@ -1,166 +1,183 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <title>Global Exercise Calculator</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
-    font-family: 'Roboto', Arial, sans-serif;
-    margin:0;
+    font-family:'Inter',sans-serif;
+    background:radial-gradient(circle at 20% 20%,#1a2735,#05080d 70%);
+    color:#e8edf2;
     padding:40px 20px;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:#fff;
 }
 
-.wrapper{
-    max-width: 1350px;
-    margin: auto;
-}
+.wrapper{max-width:1200px;margin:auto}
 
 h1{
     text-align:center;
-    font-size:42px;
-    margin-bottom:50px;
-    background: linear-gradient(90deg,#00e0ff,#4facfe);
-    -webkit-background-clip: text;
-    color: transparent;
-    letter-spacing: 1px;
+    font-size:36px;
+    margin-bottom:35px;
+    background:linear-gradient(90deg,#00e0ff,#6a9cff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
 .container{
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
 .card{
-    background: rgba(0,0,0,0.7);
-    padding: 35px 25px;
-    border-radius: 25px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    flex: 1 1 450px;
-    min-width: 380px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.card:hover{
-    transform: translateY(-10px);
-    box-shadow: 0 35px 80px rgba(0,0,0,0.85);
+    background:rgba(18,22,28,0.95);
+    border-radius:16px;
+    padding:25px;
+    box-shadow:0 15px 45px rgba(0,0,0,0.6);
+    flex:1 1 400px;
+    min-width:360px;
 }
 
 .card h2{
-    text-align: center;
-    font-size: 26px;
-    margin-bottom: 30px;
-    background: linear-gradient(90deg,#ff9a9e,#fad0c4);
-    -webkit-background-clip: text;
-    color: transparent;
+    text-align:center;
+    margin-bottom:20px;
+    color:#8ed8ff;
+    font-size:22px;
 }
 
 .row{
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 18px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
 }
 
 .field{
     flex:1;
-    min-width:100px;
     display:flex;
     flex-direction:column;
 }
 
 label{
-    font-size:14px;
-    margin-bottom:4px;
-    color:#ccc;
+    font-size:12px;
+    color:#9aa7b3;
+    margin-bottom:3px;
 }
 
-input, select{
-    padding: 12px 15px;
-    border-radius: 12px;
-    border: none;
-    background: #2c2c2c;
-    color: white;
-    font-size: 14px;
-    outline: none;
-    transition: 0.2s;
+/* Estilo diferenciado para inputs de skill */
+input#current,input#target{
+    padding:14px;
+    border-radius:12px;
+    border:2px solid #00e0ff66;
+    background:rgba(14,19,25,0.95);
+    color:#ffffff;
+    font-size:16px;
+    font-weight:600;
+    text-align:center;
+    transition: all 0.3s;
+}
+input#current::placeholder,input#target::placeholder{
+    color:#66ccff;
+    opacity:0.7;
+}
+input#current:focus,input#target:focus{
+    border-color:#00e0ff;
+    box-shadow:0 0 12px #00e0ff77 inset, 0 0 10px #00e0ff33;
+    background:rgba(14,19,25,1);
+}
+input#current:hover,input#target:hover{
+    transform:scale(1.02);
 }
 
-input::placeholder{
-    color: #aaa;
-    font-weight: 500;
+/* estilo geral dos outros inputs */
+input,select{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid rgba(255,255,255,0.1);
+    background:#0e1319;
+    color:white;
+    font-size:13px;
+    text-align:center;
+    transition: all 0.2s;
 }
 
 input:focus, select:focus{
-    background: #3a3a3a;
-    box-shadow: 0 0 12px #ff9a9e;
+    outline:none;
+    border-color:#00e0ff;
+    box-shadow:0 0 8px #00e0ff55;
 }
 
-.checkboxGroup{
+/* slider */
+.percentBox{margin-bottom:18px}
+.percentLabel{text-align:center;font-size:12px;color:#9aa7b3;margin-bottom:4px}
+.percentNumber{text-align:center;font-size:20px;font-weight:700;color:#ffd66b;margin-bottom:6px}
+.percentBar{height:8px;background:#0c1218;border-radius:20px;overflow:hidden;margin-bottom:8px}
+.percentFill{height:100%;background:linear-gradient(90deg,#00e0ff,#6a9cff);width:0%;transition:.25s}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:20px;background:#0c1218;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:14px;width:14px;border-radius:50%;background:#00e0ff;cursor:pointer;box-shadow:0 0 6px #00e0ff;transition:0.2s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+
+/* buttons */
+.selectorGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:15px}
+.selectorBtn{
+    background:#0e1319;padding:10px;border-radius:6px;text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.1);
+    font-size:12px;transition:all 0.2s;
+}
+.selectorBtn:hover{transform:scale(1.05); border-color:#00e0ff;}
+.selectorBtn.active{font-weight:600; box-shadow:0 0 6px #00e0ffaa;}
+
+/* diferenciando vocação e skill das duas calculadoras */
+.card:first-child .selectorBtn.voc.active{background:#00e0ff33;color:#00e0ff;}
+.card:first-child .selectorBtn.skill.active{background:#6a9cff33;color:#6a9cff;}
+.card:last-child .selectorBtn.voc.active{background:#ffb54733;color:#ffb547;}
+.card:last-child .selectorBtn.skill.active{background:#ff6f6f33;color:#ff6f6f;}
+
+/* loyalty buttons */
+.loyaltyButtons{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.loyaltyBtn{flex:1;padding:6px;background:#0e1319;border:1px solid rgba(255,255,255,0.1);border-radius:4px;cursor:pointer;text-align:center;font-size:11px;transition:.2s}
+.loyaltyBtn:hover{transform:scale(1.05); border-color:#00e0ff;}
+.loyaltyBtn.active{background:#00e0ff33;border-color:#00e0ff; box-shadow:0 0 6px #00e0ffaa;}
+
+.checkboxGroup{display:flex;gap:15px;margin-bottom:12px;font-size:12px}
+
+.result{margin-top:15px;background:#070b11;border-radius:10px;padding:12px;display:grid;gap:6px;font-size:13px}
+.result div{display:flex;justify-content:space-between}
+.bigValue{font-size:20px;font-weight:700;color:#ffd66b}
+
+.progressWrap{margin-top:10px;height:12px;background:#0c1218;border-radius:20px;overflow:hidden}
+.progressBar{height:100%;background:linear-gradient(90deg,#00e0ff,#6a9cff);width:0%;transition:width 0.3s, background 0.3s;}
+
+/* VARINHAS */
+.varinhaRow{
     display:flex;
-    gap:20px;
+    gap:10px;
+    justify-content:center;
     margin-bottom:15px;
-    align-items:center;
+    flex-wrap:wrap;
 }
 
-.checkboxGroup label{
-    display:flex;
-    align-items:center;
-    gap:6px;
+.varinhaRow .field{
+    flex:1;
+    min-width:80px;
+}
+
+.varinhaRow input{
+    border:2px solid rgba(255,255,255,0.2);
+    background:rgba(14,19,25,0.95);
+    font-weight:700;
     font-size:14px;
-    color:#ccc;
+    padding:8px;
+    transition: all 0.2s;
 }
-
-.result{
-    margin-top: 25px;
-    padding: 22px;
-    border-radius: 20px;
-    background: linear-gradient(145deg,#0a0f18,#05070c);
-    border: 1px solid rgba(255,255,255,0.05);
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.9),0 0 25px rgba(255,255,255,0.1);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-.result div{
-    margin-bottom:10px;
-}
-
-.bigValue{
-    font-size: 24px;
-    color: #ffcb6b;
-    font-weight: 700;
-}
-
-.progressWrap{
-    margin-top:12px;
-    background:#0b1118;
-    border-radius:14px;
-    overflow:hidden;
-    height:16px;
-    box-shadow:inset 0 0 8px rgba(0,0,0,.8);
-}
-
-.progressBar{
-    height:100%;
-    background:linear-gradient(90deg,#ff9a9e,#fad0c4);
-    width:0%;
-    transition: width 0.4s;
-}
-
-.icon{
-    margin-right:6px;
-}
-
-@media(max-width:1000px){
-    .container{
-        flex-direction: column;
-        gap: 25px;
-    }
+.varinhaRow input:hover{transform:scale(1.05); border-color:#00e0ff;}
+.varinhaRow input:focus{
+    outline:none;
+    border-color:#00e0ff;
+    box-shadow:0 0 10px #00e0ff55;
+    background:rgba(14,19,25,1);
 }
 </style>
 </head>
@@ -171,244 +188,207 @@ input:focus, select:focus{
 
 <div class="container">
 
-<!-- CARD 1 -->
+<!-- Primeira Calculadora -->
 <div class="card">
-<h2>🧮 Exercise Weapon</h2>
-
+<h2>Exercise Weapon</h2>
 <div class="row">
-<div class="field">
-    <label for="current">Skill Atual</label>
-    <input id="current" type="number" value="104" placeholder="Ex: 104">
-</div>
-<div class="field">
-    <label for="target">Skill Alvo</label>
-    <input id="target" type="number" value="105" placeholder="Ex: 105">
-</div>
-<div class="field">
-    <label for="percent">% Restante</label>
-    <input id="percent" type="number" value="100" placeholder="Ex: 100">
-</div>
+<div class="field"><label>Skill Atual</label><input id="current" type="number" placeholder="Digite aqui" value="104"></div>
+<div class="field"><label>Skill Alvo</label><input id="target" type="number" placeholder="Digite aqui" value="105"></div>
 </div>
 
-<div class="row">
-<div class="field">
-    <label for="vocation">Vocação</label>
-    <select id="vocation">
-        <option value="monk">Monk</option>
-        <option value="knight">Knight</option>
-        <option value="paladin">Paladin</option>
-        <option value="druid">Druid</option>
-        <option value="sorcerer">Sorcerer</option>
-    </select>
+<div class="percentBox">
+<div class="percentLabel">% Restante da Skill</div>
+<div class="percentNumber" id="percentNumber">100% restante</div>
+<div class="percentBar"><div class="percentFill" id="percentFill"></div></div>
+<input id="percent" type="range" min="0" max="100" value="0">
 </div>
-<div class="field">
-    <label for="skill">Tipo de Skill</label>
-    <select id="skill">
-        <option value="fist">Fist</option>
-        <option value="melee">Melee</option>
-        <option value="distance">Distance</option>
-        <option value="shield">Shield</option>
-        <option value="magic">Magic</option>
-    </select>
+
+<label>Vocação</label>
+<div class="selectorGrid">
+<div class="selectorBtn active voc" data-voc="knight">Knight</div>
+<div class="selectorBtn voc" data-voc="paladin">Paladin</div>
+<div class="selectorBtn voc" data-voc="druid">Druid</div>
+<div class="selectorBtn voc" data-voc="sorcerer">Sorcerer</div>
+<div class="selectorBtn voc" data-voc="monk">Monk</div>
 </div>
+
+<label>Tipo de Skill</label>
+<div class="selectorGrid">
+<div class="selectorBtn skill active" data-skill="fist">Fist</div>
+<div class="selectorBtn skill" data-skill="melee">Melee</div>
+<div class="selectorBtn skill" data-skill="distance">Distance</div>
+<div class="selectorBtn skill" data-skill="shield">Shield</div>
+<div class="selectorBtn skill" data-skill="magic">Magic</div>
 </div>
+
+<select id="skill" style="display:none">
+<option value="fist">Fist</option>
+<option value="melee">Melee</option>
+<option value="distance">Distance</option>
+<option value="shield">Shield</option>
+<option value="magic">Magic</option>
+</select>
+
+<label>Loyalty</label>
+<div class="loyaltyButtons" id="loyaltyButtons"></div>
 
 <div class="checkboxGroup">
-<label><span class="icon">🪑</span><input type="checkbox" id="dummy"> Training Dummy</label>
-<label><span class="icon">⚡</span><input type="checkbox" id="double"> Double Skill Event</label>
+<label><input type="checkbox" id="dummy"> Training Dummy</label>
+<label><input type="checkbox" id="double"> Double Skill Event</label>
 </div>
 
 <div class="result" id="result"></div>
 </div>
 
-<!-- CARD 2 -->
+<!-- Segunda Calculadora permanece igual -->
 <div class="card">
-<h2>✨ Varinhas</h2>
-
+<h2>Varinhas</h2>
 <div class="row">
-<div class="field">
-    <label for="current2">Skill Atual</label>
-    <input id="current2" type="number" value="104" placeholder="Ex: 104">
-</div>
-<div class="field">
-    <label for="percent2">% Restante</label>
-    <input id="percent2" type="number" value="100" placeholder="Ex: 100">
-</div>
+<div class="field"><label>Skill Atual</label><input id="current2" type="number" value="104"></div>
+<div class="field"><label>% Restante</label><input id="percent2" type="number" value="60"></div>
 </div>
 
-<div class="row">
-<div class="field">
-    <label for="regular2">Exercise Regular</label>
-    <input id="regular2" type="number" value="0" placeholder="Ex: 0">
-</div>
-<div class="field">
-    <label for="durable2">Exercise Durable</label>
-    <input id="durable2" type="number" value="0" placeholder="Ex: 0">
-</div>
-<div class="field">
-    <label for="lasting2">Exercise Lasting</label>
-    <input id="lasting2" type="number" value="0" placeholder="Ex: 0">
-</div>
+<label>Vocação</label>
+<div class="selectorGrid" id="voc2Buttons">
+<div class="selectorBtn active voc2" data-voc="knight">Knight</div>
+<div class="selectorBtn voc2" data-voc="paladin">Paladin</div>
+<div class="selectorBtn voc2" data-voc="druid">Druid</div>
+<div class="selectorBtn voc2" data-voc="sorcerer">Sorcerer</div>
+<div class="selectorBtn voc2" data-voc="monk">Monk</div>
 </div>
 
-<div class="row">
-<div class="field">
-    <label for="vocation2">Vocação</label>
-    <select id="vocation2">
-        <option value="monk">Monk</option>
-        <option value="knight">Knight</option>
-        <option value="paladin">Paladin</option>
-        <option value="druid">Druid</option>
-        <option value="sorcerer">Sorcerer</option>
-    </select>
+<label>Tipo de Skill</label>
+<div class="selectorGrid" id="skill2Buttons">
+<div class="selectorBtn skill2 active" data-skill="fist">Fist</div>
+<div class="selectorBtn skill2" data-skill="melee">Melee</div>
+<div class="selectorBtn skill2" data-skill="distance">Distance</div>
+<div class="selectorBtn skill2" data-skill="shield">Shield</div>
+<div class="selectorBtn skill2" data-skill="magic">Magic</div>
 </div>
-<div class="field">
-    <label for="skill2">Tipo de Skill</label>
-    <select id="skill2">
-        <option value="fist">Fist</option>
-        <option value="melee">Melee</option>
-        <option value="distance">Distance</option>
-        <option value="shield">Shield</option>
-        <option value="magic">Magic</option>
-    </select>
+
+<div class="varinhaRow">
+<div class="field"><label>Regular</label><input id="regular2" type="number" value="0"></div>
+<div class="field"><label>Durable</label><input id="durable2" type="number" value="0"></div>
+<div class="field"><label>Lasting</label><input id="lasting2" type="number" value="0"></div>
 </div>
-</div>
+
+<label>Loyalty</label>
+<div class="loyaltyButtons" id="loyaltyButtons2"></div>
 
 <div class="checkboxGroup">
-<label><span class="icon">🪑</span><input type="checkbox" id="dummy2"> Training Dummy</label>
-<label><span class="icon">⚡</span><input type="checkbox" id="double2"> Double Skill Event</label>
+<label><input type="checkbox" id="dummy2"> Training Dummy</label>
+<label><input type="checkbox" id="double2"> Double Skill Event</label>
 </div>
 
 <div class="result" id="result2"></div>
 <div class="progressWrap"><div class="progressBar" id="bar2"></div></div>
-</div>
 
+</div>
 </div>
 </div>
 
 <script>
-// JS CORRIGIDO (mesmo que o original, só arrumei N())
-const vocation = {
-    knight:{magic:3,melee:1.1,fist:1.1,distance:1.4,shield:1.1},
-    paladin:{magic:1.4,melee:1.2,fist:1.2,distance:1.1,shield:1.1},
-    druid:{magic:1.1,melee:1.8,fist:1.5,distance:1.8,shield:1.5},
-    sorcerer:{magic:1.1,melee:2,fist:1.5,distance:2,shield:1.5},
-    monk:{magic:1.25,melee:1.4,fist:1.1,distance:1.5,shield:1.15}
-};
-
-const weaponPoints = {regular:300000,durable:1080000,lasting:8640000};
-const weaponTime = {regular:{charges:500,duration:1000,cost:347222},durable:{charges:1800,duration:3600,cost:1250000},lasting:{charges:14400,duration:28800,cost:10000000}};
+// BASE & Vocations
 const BASE=1600;
+const vocation={ knight:{magic:3,melee:1.1,fist:1.1,distance:1.4,shield:1.1},
+paladin:{magic:1.4,melee:1.2,fist:1.2,distance:1.1,shield:1.1},
+druid:{magic:1.1,melee:1.8,fist:1.5,distance:1.8,shield:1.5},
+sorcerer:{magic:1.1,melee:2,fist:1.5,distance:2,shield:1.5},
+monk:{magic:1.25,melee:1.4,fist:1.1,distance:1.5,shield:1.15}};
+const weaponPoints={regular:300000,durable:1080000,lasting:8640000};
+const weaponTime={regular:{duration:1000,cost:347222},durable:{duration:3600,cost:1250000},lasting:{duration:28800,cost:10000000}};
+function Z(skill,voc,sk){let i=vocation[voc][sk];return BASE*(Math.pow(i,skill)-1)/(i-1)}
+function N(skill,voc,sk){let i=vocation[voc][sk];return BASE*Math.pow(i,skill)}
+function formatTime(sec){let h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),s=Math.floor(sec%60);return (h>0?h+"h ":"")+(m>0?m+"m ":"")+s+"s"}
 
-function Z(skillValue,voc,skill){
-    let i=vocation[voc][skill];
-    return BASE*(Math.pow(i,skillValue)-1)/(i-1);
-}
-
-function N(skillValue,voc,skill){
-    let i=vocation[voc][skill];
-    return BASE*Math.pow(i,skillValue); // CORRIGIDO
-}
-
-function pointsNeeded(current,target,percent,voc,skill){
-    let start=Z(current,voc,skill);
-    let end=Z(target,voc,skill);
-    let diff=end-start;
-    let p=percent/100;
-    if(target-current==1){
-        return diff*p;
-    } else {
-        let next=N(current,voc,skill);
-        return diff-next*(1-p);
-    }
-}
-
-function formatTime(sec){
-    let h=Math.floor(sec/3600);
-    let m=Math.floor((sec%3600)/60);
-    let s=Math.floor(sec%60);
-    return `${h>0?h+'h ':''}${m>0?m+'m ':''}${s}s`;
-}
-
+// Primeira Calculadora
+let selectedVoc="knight",loyalty=0
+const currentInput=document.getElementById("current"),targetInput=document.getElementById("target")
+const skillInput=document.getElementById("skill"),dummyInput=document.getElementById("dummy"),doubleInput=document.getElementById("double")
+const result=document.getElementById("result")
+const percentSlider=document.getElementById("percent"),percentFill=document.getElementById("percentFill"),percentNumber=document.getElementById("percentNumber")
+function updatePercentFill(val){percentFill.style.width=val+"%";percentNumber.innerText=(100-val).toFixed(0)+"% restante"}
+percentSlider.oninput=()=>{updatePercentFill(parseFloat(percentSlider.value));calc()}
+document.querySelectorAll(".voc").forEach(v=>{v.onclick=()=>{document.querySelectorAll(".voc").forEach(x=>x.classList.remove("active"));v.classList.add("active");selectedVoc=v.dataset.voc;calc()}})
+document.querySelectorAll(".skill").forEach(btn=>{btn.onclick=()=>{document.querySelectorAll(".skill").forEach(x=>x.classList.remove("active"));btn.classList.add("active");skillInput.value=btn.dataset.skill;calc()}})
+const loyaltyButtons=document.getElementById("loyaltyButtons")
+for(let i=0;i<=50;i+=5){let btn=document.createElement("div");btn.className="loyaltyBtn";btn.innerText=i+"%";btn.onclick=()=>{document.querySelectorAll(".loyaltyBtn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");loyalty=i/100;calc()};if(i===0)btn.classList.add("active");loyaltyButtons.appendChild(btn)}
 function calc(){
-    let current=parseInt(document.getElementById("current").value);
-    let target=parseInt(document.getElementById("target").value);
-    let percent=parseFloat(document.getElementById("percent").value);
-    let voc=document.getElementById("vocation").value;
-    let skill=document.getElementById("skill").value;
-    let dummy=document.getElementById("dummy").checked;
-    let dbl=document.getElementById("double").checked;
-
-    let pts=pointsNeeded(current,target,percent,voc,skill);
-    if(dummy) pts/=1.1;
-    if(dbl) pts/=2;
-
-    let lasting=Math.floor(pts/weaponPoints.lasting);
-    pts%=weaponPoints.lasting;
-    let durable=Math.floor(pts/weaponPoints.durable);
-    pts%=weaponPoints.durable;
-    let regular=Math.ceil(pts/weaponPoints.regular);
-
-    let totalTime = regular*weaponTime.regular.duration + durable*weaponTime.durable.duration + lasting*weaponTime.lasting.duration;
-    let totalCost = regular*weaponTime.regular.cost + durable*weaponTime.durable.cost + lasting*weaponTime.lasting.cost;
-
-    document.getElementById("result").innerHTML=`
-        <div>🗡️ Regular: ${regular}</div>
-        <div>🛡️ Durable: ${durable}</div>
-        <div>🔥 Lasting: ${lasting}</div>
-        <div>⏱️ Tempo estimado: ${formatTime(totalTime)}</div>
-        <div>💰 Custo total: ${totalCost.toLocaleString()} gp</div>
-    `;
+let current=parseInt(currentInput.value),target=parseInt(targetInput.value),percent=parseFloat(percentSlider.value),skill=skillInput.value
+let dummy=dummyInput.checked,dbl=doubleInput.checked
+let pts=(Z(target,selectedVoc,skill)-Z(current,selectedVoc,skill))*(1-percent/100)
+pts/=1+loyalty;if(dummy)pts/=1.1;if(dbl)pts/=2
+let lasting=Math.floor(pts/weaponPoints.lasting);pts%=weaponPoints.lasting
+let durable=Math.floor(pts/weaponPoints.durable);pts%=weaponPoints.durable
+let regular=Math.ceil(pts/weaponPoints.regular)
+let totalTime=regular*weaponTime.regular.duration+durable*weaponTime.durable.duration+lasting*weaponTime.lasting.duration
+let totalCost=regular*weaponTime.regular.cost+durable*weaponTime.durable.cost+lasting*weaponTime.lasting.cost
+result.innerHTML=`<div><span>Regular</span><span>${regular}</span></div><div><span>Durable</span><span>${durable}</span></div><div><span>Lasting</span><span>${lasting}</span></div><div><span>Tempo</span><span>${formatTime(totalTime)}</span></div><div><span>Custo</span><span>${totalCost.toLocaleString()} gp</span></div>`
 }
+
+// Segunda Calculadora atualizada
+let selectedVoc2="knight",selectedSkill2="melee"
+const current2=document.getElementById("current2"),percent2Input=document.getElementById("percent2")
+const regular2=document.getElementById("regular2"),durable2=document.getElementById("durable2"),lasting2=document.getElementById("lasting2")
+const dummy2=document.getElementById("dummy2"),double2=document.getElementById("double2")
+const result2=document.getElementById("result2"),bar2=document.getElementById("bar2")
+
+document.querySelectorAll(".voc2").forEach(v=>{v.onclick=()=>{document.querySelectorAll(".voc2").forEach(x=>x.classList.remove("active"));v.classList.add("active");selectedVoc2=v.dataset.voc;calcReach()}})
+document.querySelectorAll(".skill2").forEach(btn=>{btn.onclick=()=>{document.querySelectorAll(".skill2").forEach(x=>x.classList.remove("active"));btn.classList.add("active");selectedSkill2=btn.dataset.skill;calcReach()}})
+
+const loyaltyButtons2=document.getElementById("loyaltyButtons2")
+for(let i=0;i<=50;i+=5){let btn=document.createElement("div");btn.className="loyaltyBtn";btn.innerText=i+"%";btn.onclick=()=>{document.querySelectorAll("#loyaltyButtons2 .loyaltyBtn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");calcReach()};if(i===0)btn.classList.add("active");loyaltyButtons2.appendChild(btn)}
 
 function calcReach(){
-    let skill=parseInt(document.getElementById("current2").value);
-    let percent=parseFloat(document.getElementById("percent2").value);
-    let voc=document.getElementById("vocation2").value;
-    let sk=document.getElementById("skill2").value;
-    let regular=parseInt(document.getElementById("regular2").value);
-    let durable=parseInt(document.getElementById("durable2").value);
-    let lasting=parseInt(document.getElementById("lasting2").value);
-    let dummy=document.getElementById("dummy2").checked;
-    let dbl=document.getElementById("double2").checked;
+    let skill=parseInt(current2.value),percent=parseFloat(percent2Input.value)
+    let loyalty=parseFloat(document.querySelector("#loyaltyButtons2 .active").innerText)/100
+    let reg=parseInt(regular2.value)||0, dur=parseInt(durable2.value)||0, last=parseInt(lasting2.value)||0
+    let dummyChk=dummy2.checked, dblChk=double2.checked
+    let pts=reg*weaponPoints.regular+dur*weaponPoints.durable+last*weaponPoints.lasting
+    pts*=(1+loyalty); if(dummyChk) pts*=1.1; if(dblChk) pts*=2
 
-    let points= regular*weaponPoints.regular + durable*weaponPoints.durable + lasting*weaponPoints.lasting;
-    if(dummy) points*=1.1;
-    if(dbl) points*=2;
+    let startSkillExp=Z(skill,selectedVoc2,selectedSkill2)
+    let nextSkillExp=N(skill,selectedVoc2,selectedSkill2)
+    let totalExp=startSkillExp + nextSkillExp*(1-percent/100) + pts
 
-    let start=Z(skill,voc,sk);
-    let next=N(skill,voc,sk);
-    let progress=(100-percent)/100;
-    let total=start+next*progress+points;
+    let newSkill=skill
+    let remainingPercent=0
+    while(Z(newSkill+1,selectedVoc2,selectedSkill2) <= totalExp){newSkill++}
+    let currentSkillExp=Z(newSkill,selectedVoc2,selectedSkill2)
+    let nextSkillExpCurrent=N(newSkill,selectedVoc2,selectedSkill2)
+    let percentInSkill=((totalExp-currentSkillExp)/nextSkillExpCurrent)*100
+    remainingPercent=100-percentInSkill
 
-    let newSkill=skill;
-    while(Z(newSkill+1,voc,sk)<=total){
-        newSkill++;
+    let gained=newSkill-skill
+    let message=""
+
+    if(reg+dur+last>0){
+        message+="<strong>Varinhas usadas:</strong> "
+        if(reg>0) message+=`<span style="color:#ffd66b">${reg} Regular</span> `
+        if(dur>0) message+=`<span style="color:#ff8a00">${dur} Durable</span> `
+        if(last>0) message+=`<span style="color:#ff5e5e">${last} Lasting</span> `
+        message+="<br>"
     }
 
-    let currentStart=Z(newSkill,voc,sk);
-    let nextReq=N(newSkill,voc,sk);
-    let newPercent=((total-currentStart)/nextReq)*100;
-    let remaining=100-newPercent;
-    let gainedSkill=newSkill-skill;
+    if(gained>0){
+        message+=`<span>Você ganhou <strong>${gained} skill(s)</strong> | Faltam: <strong>${remainingPercent.toFixed(2)}%</strong> para skill <strong>${newSkill+1}</strong></span>`
+        bar2.style.width=percentInSkill+"%"
+    } else {
+        message+=`<span>Você ganhou <strong>${(percentInSkill-(100-percent)).toFixed(2)}%</strong> dentro da skill <strong>${skill}</strong> | Faltam: <strong>${remainingPercent.toFixed(2)}%</strong> para skill <strong>${skill+1}</strong></span>`
+        bar2.style.width=percentInSkill+"%"
+    }
 
-    let totalTime = regular*weaponTime.regular.duration + durable*weaponTime.durable.duration + lasting*weaponTime.lasting.duration;
-    let totalCost = regular*weaponTime.regular.cost + durable*weaponTime.durable.cost + lasting*weaponTime.lasting.cost;
-
-    document.getElementById("result2").innerHTML=`
-        <div>🎯 Skill final: <span class="bigValue">${newSkill}</span></div>
-        <div>📈 Progresso: Você ganhou ${gainedSkill} skill e faltam ${remaining.toFixed(2)}%</div>
-        <div>⏱️ Tempo estimado: ${formatTime(totalTime)}</div>
-        <div>💰 Custo total: ${totalCost.toLocaleString()} gp</div>
-    `;
-    document.getElementById("bar2").style.width=newPercent+"%";
+    result2.innerHTML=message
 }
 
-document.querySelectorAll('input, select').forEach(el=>{
-    el.addEventListener('input',()=>{calc(); calcReach();});
-});
+// Atualização ao digitar
+document.querySelectorAll("input").forEach(el=>{
+    el.addEventListener("input",()=>{updatePercentFill(parseFloat(document.getElementById("percent").value)); calc(); calcReach();})
+})
 
-window.addEventListener('load',()=>{calc(); calcReach();});
+updatePercentFill(0)
+calc()
+calcReach()
 </script>
 
 </body>
