@@ -2,8 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Global Exercise Calculator</title>
+<title>Calculadora Skills</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 
@@ -67,32 +68,6 @@ label{
     margin-bottom:3px;
 }
 
-/* Estilo diferenciado para inputs de skill */
-input#current,input#target{
-    padding:14px;
-    border-radius:12px;
-    border:2px solid #00e0ff66;
-    background:rgba(14,19,25,0.95);
-    color:#ffffff;
-    font-size:16px;
-    font-weight:600;
-    text-align:center;
-    transition: all 0.3s;
-}
-input#current::placeholder,input#target::placeholder{
-    color:#66ccff;
-    opacity:0.7;
-}
-input#current:focus,input#target:focus{
-    border-color:#00e0ff;
-    box-shadow:0 0 12px #00e0ff77 inset, 0 0 10px #00e0ff33;
-    background:rgba(14,19,25,1);
-}
-input#current:hover,input#target:hover{
-    transform:scale(1.02);
-}
-
-/* estilo geral dos outros inputs */
 input,select{
     padding:10px;
     border-radius:6px;
@@ -111,89 +86,1653 @@ input:focus, select:focus{
 }
 
 /* slider */
+
 .percentBox{margin-bottom:18px}
-.percentLabel{text-align:center;font-size:12px;color:#9aa7b3;margin-bottom:4px}
-.percentNumber{text-align:center;font-size:20px;font-weight:700;color:#ffd66b;margin-bottom:6px}
-.percentBar{height:8px;background:#0c1218;border-radius:20px;overflow:hidden;margin-bottom:8px}
-.percentFill{height:100%;background:linear-gradient(90deg,#00e0ff,#6a9cff);width:0%;transition:.25s}
-input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:20px;background:#0c1218;outline:none}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;height:14px;width:14px;border-radius:50%;background:#00e0ff;cursor:pointer;box-shadow:0 0 6px #00e0ff;transition:0.2s}
-input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
+
+.percentLabel{
+text-align:center;
+font-size:12px;
+color:#9aa7b3;
+margin-bottom:4px
+}
+
+.percentNumber{
+text-align:center;
+font-size:20px;
+font-weight:700;
+color:#ffd66b;
+margin-bottom:6px
+}
+
+.percentBar{
+height:8px;
+background:#0c1218;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:8px
+}
+
+.percentFill{
+height:100%;
+background:linear-gradient(90deg,#00ff00,#00aa00);
+width:0%;
+transition:.25s;
+box-shadow:0 0 6px rgba(0,255,0,0.6);
+}
+
+input[type=range]{
+-webkit-appearance:none;
+width:100%;
+height:6px;
+border-radius:20px;
+background:#0c1218;
+outline:none
+}
+
+input[type=range]::-webkit-slider-thumb{
+-webkit-appearance:none;
+height:14px;
+width:14px;
+border-radius:50%;
+background:#00e0ff;
+cursor:pointer;
+box-shadow:0 0 6px #00e0ff;
+transition:0.2s
+}
+
+input[type=range]::-webkit-slider-thumb:hover{
+transform:scale(1.2)
+}
 
 /* buttons */
-.selectorGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:15px}
-.selectorBtn{
-    background:#0e1319;padding:10px;border-radius:6px;text-align:center;cursor:pointer;border:1px solid rgba(255,255,255,0.1);
-    font-size:12px;transition:all 0.2s;
+
+.selectorGrid{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:8px;
+margin-bottom:15px
 }
-.selectorBtn:hover{transform:scale(1.05); border-color:#00e0ff;}
-.selectorBtn.active{font-weight:600; box-shadow:0 0 6px #00e0ffaa;}
 
-/* diferenciando vocação e skill das duas calculadoras */
-.card:first-child .selectorBtn.voc.active{background:#00e0ff33;color:#00e0ff;}
-.card:first-child .selectorBtn.skill.active{background:#6a9cff33;color:#6a9cff;}
-.card:last-child .selectorBtn.voc.active{background:#ffb54733;color:#ffb547;}
-.card:last-child .selectorBtn.skill.active{background:#ff6f6f33;color:#ff6f6f;}
+.selectorBtn{
+background:#0e1319;
+padding:10px;
+border-radius:6px;
+text-align:center;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.1);
+font-size:12px;
+transition:all 0.2s;
+}
 
-/* loyalty buttons */
-.loyaltyButtons{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
-.loyaltyBtn{flex:1;padding:6px;background:#0e1319;border:1px solid rgba(255,255,255,0.1);border-radius:4px;cursor:pointer;text-align:center;font-size:11px;transition:.2s}
-.loyaltyBtn:hover{transform:scale(1.05); border-color:#00e0ff;}
-.loyaltyBtn.active{background:#00e0ff33;border-color:#00e0ff; box-shadow:0 0 6px #00e0ffaa;}
+.selectorBtn:hover{
+transform:scale(1.05);
+border-color:#00e0ff;
+}
 
-.checkboxGroup{display:flex;gap:15px;margin-bottom:12px;font-size:12px}
+.selectorBtn.active{
+font-weight:600;
+box-shadow:0 0 6px #00e0ffaa;
+}
 
-.result{margin-top:15px;background:#070b11;border-radius:10px;padding:12px;display:grid;gap:6px;font-size:13px}
-.result div{display:flex;justify-content:space-between}
-.bigValue{font-size:20px;font-weight:700;color:#ffd66b}
+/* diferenciação das calculadoras */
 
-.progressWrap{margin-top:10px;height:12px;background:#0c1218;border-radius:20px;overflow:hidden}
-.progressBar{height:100%;background:linear-gradient(90deg,#00e0ff,#6a9cff);width:0%;transition:width 0.3s, background 0.3s;}
+.card:first-child .selectorBtn.voc.active{
+background:#00e0ff33;
+color:#00e0ff;
+}
 
-/* VARINHAS */
+.card:first-child .selectorBtn.skill.active{
+background:#6a9cff33;
+color:#6a9cff;
+}
+
+.card:last-child .selectorBtn.voc.active{
+background:#ffb54733;
+color:#ffb547;
+}
+
+.card:last-child .selectorBtn.skill.active{
+background:#ff6f6f33;
+color:#ff6f6f;
+}
+
+/* loyalty */
+
+.loyaltyButtons{
+display:flex;
+flex-wrap:wrap;
+gap:6px;
+margin-bottom:12px
+}
+
+.loyaltyBtn{
+flex:1;
+padding:6px;
+background:#0e1319;
+border:1px solid rgba(255,255,255,0.1);
+border-radius:4px;
+cursor:pointer;
+text-align:center;
+font-size:11px;
+transition:.2s
+}
+
+.loyaltyBtn:hover{
+transform:scale(1.05);
+border-color:#00e0ff;
+}
+
+.loyaltyBtn.active{
+background:#00e0ff33;
+border-color:#00e0ff;
+box-shadow:0 0 6px #00e0ffaa;
+}
+
+.checkboxGroup{
+display:flex;
+gap:15px;
+margin-bottom:12px;
+font-size:12px
+}
+
+/* result */
+
+.result{
+margin-top:15px;
+background:#070b11;
+border-radius:10px;
+padding:12px;
+display:grid;
+gap:6px;
+font-size:13px
+}
+
+.result div{
+display:flex;
+justify-content:space-between
+}
+
+.bigValue{
+font-size:20px;
+font-weight:700;
+color:#ffd66b
+}
+
+/* barras */
+
+.progressWrap{
+margin-top:10px;
+height:12px;
+background:#0c1218;
+border-radius:20px;
+overflow:hidden;
+box-shadow:inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+.progressBar{
+height:100%;
+background:linear-gradient(90deg,#00ff00,#00aa00);
+width:0%;
+transition:width 0.3s;
+box-shadow:0 0 6px rgba(0,255,0,0.6);
+}
+
+/* varinhas */
+
 .varinhaRow{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    margin-bottom:15px;
-    flex-wrap:wrap;
+display:flex;
+gap:10px;
+justify-content:center;
+margin-bottom:15px;
+flex-wrap:wrap;
 }
 
 .varinhaRow .field{
-    flex:1;
-    min-width:80px;
+flex:1;
+min-width:80px;
 }
 
 .varinhaRow input{
-    border:2px solid rgba(255,255,255,0.2);
-    background:rgba(14,19,25,0.95);
-    font-weight:700;
-    font-size:14px;
-    padding:8px;
+border:2px solid rgba(255,255,255,0.2);
+background:rgba(14,19,25,0.95);
+font-weight:700;
+font-size:14px;
+padding:8px;
+transition: all 0.2s;
+}
+
+.varinhaRow input:hover{
+transform:scale(1.05);
+border-color:#00e0ff;
+}
+
+.varinhaRow input:focus{
+outline:none;
+border-color:#00e0ff;
+box-shadow:0 0 10px #00e0ff55;
+background:rgba(14,19,25,1);
+}
+/* barra da segunda calculadora */
+
+.progressContainer{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:12px;
+margin-bottom:10px;
+}
+
+.progressContainer span{
+font-size:12px;
+color:#9aa7b3;
+min-width:28px;
+text-align:center;
+}
+
+.progressWrap{
+flex:1;
+height:12px;
+background:#0c1218;
+border-radius:20px;
+overflow:hidden;
+box-shadow:inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+.progressBar{
+height:100%;
+background:linear-gradient(90deg,#00ff00,#00aa00);
+width:0%;
+transition:width 0.3s;
+box-shadow:0 0 6px rgba(0,255,0,0.6);
+}
+/* ================================
+   INPUTS IMPORTANTES (Skill atual)
+================================ */
+
+#current,
+#current2{
+background:linear-gradient(145deg,#101720,#0b1118);
+border:2px solid #00e0ff55;
+font-weight:700;
+font-size:16px;
+color:#00e0ff;
+box-shadow:0 0 8px rgba(0,224,255,0.2);
+}
+
+#current:focus,
+#current2:focus{
+border-color:#00e0ff;
+box-shadow:0 0 14px rgba(0,224,255,0.7);
+transform:scale(1.03);
+}
+
+
+/* ================================
+   INPUTS GERAIS MAIS BONITOS
+================================ */
+
+input, select{
+background:linear-gradient(145deg,#0f1620,#0a0f15);
+border:1px solid rgba(255,255,255,0.15);
+}
+
+input:hover, select:hover{
+border-color:#00e0ff55;
+}
+
+
+/* ================================
+   BOTÕES SEGUNDA CALCULADORA
+   (Vocação e Skill)
+================================ */
+
+#voc2Buttons .selectorBtn,
+#skill2Buttons .selectorBtn{
+
+background:linear-gradient(145deg,#101720,#0b1118);
+border:1px solid rgba(255,255,255,0.15);
+font-weight:600;
+transition:all .2s ease;
+}
+
+#voc2Buttons .selectorBtn:hover,
+#skill2Buttons .selectorBtn:hover{
+
+transform:translateY(-2px) scale(1.05);
+border-color:#00e0ff;
+box-shadow:0 0 10px rgba(0,224,255,0.35);
+}
+
+
+/* ================================
+   BOTÕES ATIVOS (SEGUNDA CALC)
+================================ */
+
+#voc2Buttons .selectorBtn.active{
+background:linear-gradient(145deg,#ffb54733,#ff8a0033);
+color:#ffb547;
+border-color:#ffb547;
+box-shadow:0 0 10px rgba(255,181,71,0.6);
+}
+
+#skill2Buttons .selectorBtn.active{
+background:linear-gradient(145deg,#ff6f6f33,#ff3a3a33);
+color:#ff6f6f;
+border-color:#ff6f6f;
+box-shadow:0 0 10px rgba(255,111,111,0.6);
+}
+
+
+/* ================================
+   INPUTS DE VARINHA MAIS VISÍVEIS
+================================ */
+
+.varinhaRow input{
+
+background:linear-gradient(145deg,#121a24,#0b1118);
+border:2px solid rgba(255,255,255,0.15);
+font-weight:700;
+font-size:15px;
+}
+
+.varinhaRow input:hover{
+border-color:#00e0ff;
+box-shadow:0 0 10px rgba(0,224,255,0.35);
+}
+
+.varinhaRow input:focus{
+border-color:#00e0ff;
+box-shadow:0 0 12px rgba(0,224,255,0.7);
+transform:scale(1.05);
+}
+/* =====================================
+   PRIMEIRA CALCULADORA - VISUAL MELHOR
+===================================== */
+
+/* Skill atual mais destacado */
+
+#current{
+background:linear-gradient(145deg,#101720,#0b1118);
+border:2px solid #00e0ff55;
+font-weight:700;
+font-size:16px;
+color:#00e0ff;
+box-shadow:0 0 8px rgba(0,224,255,0.25);
+}
+
+#current:focus{
+border-color:#00e0ff;
+box-shadow:0 0 14px rgba(0,224,255,0.7);
+transform:scale(1.03);
+}
+
+
+/* =============================
+   BOTÕES VOCAÇÃO (calc 1)
+============================= */
+
+.card:first-child .selectorBtn.voc{
+
+background:linear-gradient(145deg,#101720,#0b1118);
+border:1px solid rgba(255,255,255,0.15);
+font-weight:600;
+transition:all .2s ease;
+}
+
+.card:first-child .selectorBtn.voc:hover{
+
+transform:translateY(-2px) scale(1.05);
+border-color:#00e0ff;
+box-shadow:0 0 10px rgba(0,224,255,0.35);
+}
+
+.card:first-child .selectorBtn.voc.active{
+
+background:linear-gradient(145deg,#00e0ff33,#0099ff33);
+color:#00e0ff;
+border-color:#00e0ff;
+box-shadow:0 0 12px rgba(0,224,255,0.6);
+}
+
+
+/* =============================
+   BOTÕES SKILL (calc 1)
+============================= */
+
+.card:first-child .selectorBtn.skill{
+
+background:linear-gradient(145deg,#101720,#0b1118);
+border:1px solid rgba(255,255,255,0.15);
+font-weight:600;
+transition:all .2s ease;
+}
+
+.card:first-child .selectorBtn.skill:hover{
+
+transform:translateY(-2px) scale(1.05);
+border-color:#6a9cff;
+box-shadow:0 0 10px rgba(106,156,255,0.4);
+}
+
+.card:first-child .selectorBtn.skill.active{
+
+background:linear-gradient(145deg,#6a9cff33,#4c7eff33);
+color:#6a9cff;
+border-color:#6a9cff;
+box-shadow:0 0 12px rgba(106,156,255,0.6);
+}
+/* =====================================
+   DESTAQUE CAMPOS IMPORTANTES
+===================================== */
+
+/* Skill alvo - primeira calculadora */
+
+#target{
+background:linear-gradient(145deg,#101720,#0b1118);
+border:2px solid #6a9cff55;
+font-weight:700;
+font-size:16px;
+color:#6a9cff;
+box-shadow:0 0 8px rgba(106,156,255,0.25);
+}
+
+#target:focus{
+border-color:#6a9cff;
+box-shadow:0 0 14px rgba(106,156,255,0.7);
+transform:scale(1.03);
+}
+
+
+/* % restante - segunda calculadora */
+
+#percent2{
+background:linear-gradient(145deg,#101720,#0b1118);
+border:2px solid #00ff8855;
+font-weight:700;
+font-size:16px;
+color:#00ff88;
+box-shadow:0 0 8px rgba(0,255,136,0.25);
+}
+
+#percent2:focus{
+border-color:#00ff88;
+box-shadow:0 0 14px rgba(0,255,136,0.7);
+transform:scale(1.03);
+}
+/* =====================================
+   EFEITO DE FOCO GLOBAL NOS INPUTS
+===================================== */
+
+input{
+transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+input:hover{
+transform:scale(1.02);
+}
+
+input:focus{
+transform:scale(1.04);
+box-shadow:0 0 12px rgba(0,224,255,0.45);
+border-color:#00e0ff;
+z-index:2;
+position:relative;
+}
+/* =====================================
+   MICRO INTERAÇÃO INPUTS
+   (cada calculadora com cor própria)
+===================================== */
+
+input{
+transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+
+/* hover geral */
+
+input:hover{
+transform:scale(1.02);
+}
+
+
+/* =============================
+   CALCULADORA 1 (AZUL)
+============================= */
+
+.card:first-child input:focus{
+
+transform:scale(1.04);
+border-color:#00e0ff;
+box-shadow:0 0 12px rgba(0,224,255,0.45);
+z-index:2;
+position:relative;
+
+}
+
+
+/* =============================
+   CALCULADORA 2 (LARANJA)
+============================= */
+
+.card:last-child input:focus{
+
+transform:scale(1.04);
+border-color:#ff8a00;
+box-shadow:0 0 12px rgba(255,138,0,0.45);
+z-index:2;
+position:relative;
+
+}
+/* ================================
+INPUTS DESTACADOS
+================================ */
+
+/* primeira calculadora (azul) */
+
+.card:first-of-type input:hover{
+transform:scale(1.03);
+}
+
+.card:first-of-type input:focus{
+
+transform:scale(1.05);
+
+border:2px solid #00e0ff;
+
+box-shadow:
+0 0 6px rgba(0,224,255,0.6),
+0 0 14px rgba(0,224,255,0.4);
+
+background:#0b1620;
+
+}
+
+
+/* segunda calculadora (laranja) */
+
+.card:last-of-type input:hover{
+transform:scale(1.03);
+}
+
+.card:last-of-type input:focus{
+
+transform:scale(1.05);
+
+border:2px solid #ff8a00;
+
+box-shadow:
+0 0 6px rgba(255,138,0,0.7),
+0 0 14px rgba(255,138,0,0.45);
+
+background:#1a1208;
+
+}
+
+
+/* ================================
+BARRA DE SKILL ESTILO TIBIA
+================================ */
+
+.progressBar,
+.percentFill{
+
+background:linear-gradient(
+90deg,
+#00ff00 0%,
+#00cc00 40%,
+#33ff33 50%,
+#00cc00 60%,
+#00aa00 100%
+);
+
+background-size:200% 100%;
+
+animation:skillGlow 3s linear infinite;
+
+box-shadow:
+0 0 6px rgba(0,255,0,0.7),
+inset 0 0 6px rgba(0,0,0,0.5);
+
+}
+
+
+/* animação de brilho passando */
+
+@keyframes skillGlow{
+
+0%{
+background-position:0% 0;
+}
+
+100%{
+background-position:200% 0;
+}
+
+}
+/* ================================
+   BARRA COM BRILHO BASE
+================================ */
+
+.progressBar,
+.percentFill{
+background:linear-gradient(
+90deg,
+#00ff00 0%,
+#00cc00 40%,
+#33ff33 50%,
+#00cc00 60%,
+#00aa00 100%
+);
+background-size:200% 100%;
+animation:skillFlow 3s linear infinite;
+box-shadow:
+0 0 6px rgba(0,255,0,0.7),
+inset 0 0 6px rgba(0,0,0,0.6);
+}
+
+
+/* movimento do brilho */
+
+@keyframes skillFlow{
+0%{background-position:0% 0;}
+100%{background-position:200% 0;}
+}
+
+
+/* ================================
+   EFEITO LEVEL UP
+================================ */
+
+.levelUpFlash{
+animation:levelFlash .6s ease;
+}
+
+@keyframes levelFlash{
+
+0%{
+box-shadow:
+0 0 10px #00ff00,
+0 0 20px #33ff33;
+transform:scaleY(1.2);
+}
+
+50%{
+box-shadow:
+0 0 20px #66ff66,
+0 0 35px #00ff00;
+}
+
+100%{
+box-shadow:
+0 0 6px rgba(0,255,0,0.7);
+transform:scaleY(1);
+}
+
+}
+/* ================================
+   TEXTO FLUTUANTE DE PROGRESSO
+================================ */
+
+.skillFloat{
+
+position:absolute;
+
+top:-18px;
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:12px;
+font-weight:700;
+
+color:#7CFF7C;
+
+text-shadow:
+0 0 6px rgba(0,255,0,0.9),
+0 0 12px rgba(0,255,0,0.6);
+
+pointer-events:none;
+
+animation:floatSkill 1.2s ease forwards;
+
+}
+
+@keyframes floatSkill{
+
+0%{
+opacity:0;
+transform:translate(-50%,5px) scale(.9);
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+transform:translate(-50%,-18px) scale(1.1);
+}
+
+}
+.progressWrap{
+position:relative;
+}
+/* ===============================
+FLOAT DE PROGRESSO
+=============================== */
+
+.progressWrap{
+position:relative;
+}
+
+.skillFloat{
+
+position:absolute;
+
+left:50%;
+top:-20px;
+
+transform:translateX(-50%);
+
+font-size:12px;
+font-weight:700;
+
+color:#7CFF7C;
+
+text-shadow:
+0 0 6px rgba(0,255,0,0.9),
+0 0 12px rgba(0,255,0,0.6);
+
+pointer-events:none;
+
+animation:floatSkill 1.2s ease forwards;
+
+}
+
+@keyframes floatSkill{
+
+0%{
+opacity:0;
+transform:translate(-50%,5px) scale(.9);
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+opacity:0;
+transform:translate(-50%,-18px) scale(1.1);
+}
+
+}
+/* =================================
+   TOGGLES (Dummy / Double Event)
+================================= */
+
+.checkboxGroup{
+display:flex;
+gap:12px;
+margin-bottom:14px;
+justify-content:center;
+}
+
+/* esconde checkbox padrão */
+
+.checkboxGroup input{
+display:none;
+}
+
+/* botão visual */
+
+.checkboxGroup label{
+
+flex:1;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+padding:10px 12px;
+
+background:linear-gradient(145deg,#101720,#0b1118);
+
+border:1px solid rgba(255,255,255,0.15);
+
+border-radius:8px;
+
+cursor:pointer;
+
+font-size:13px;
+font-weight:600;
+
+color:#9aa7b3;
+
+transition:all .2s ease;
+
+user-select:none;
+
+}
+
+
+/* hover */
+
+.checkboxGroup label:hover{
+
+transform:translateY(-2px) scale(1.03);
+
+border-color:#00e0ff;
+
+box-shadow:0 0 8px rgba(0,224,255,0.35);
+
+}
+
+
+/* ativado */
+
+.checkboxGroup input:checked + span{
+
+color:#00ff88;
+
+}
+
+
+/* label quando ativo */
+
+.checkboxGroup input:checked + span::before{
+
+content:"✓ ";
+color:#00ff88;
+
+}
+
+
+/* glow quando ativo */
+
+.checkboxGroup input:checked ~ span,
+.checkboxGroup input:checked + span{
+
+text-shadow:0 0 6px rgba(0,255,136,0.7);
+
+}
+
+.checkboxGroup input:checked + span{
+
+background:linear-gradient(145deg,#00ff8833,#00994d33);
+
+border-color:#00ff88;
+
+box-shadow:
+
+0 0 10px rgba(0,255,136,0.5),
+inset 0 0 8px rgba(0,255,136,0.2);
+
+}
+/* ================================
+TOGGLE LIMPO COM ÍCONES
+================================ */
+
+.checkboxGroup{
+display:flex;
+gap:22px;
+justify-content:center;
+margin-bottom:14px;
+flex-wrap:wrap;
+}
+
+.toggle{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+font-size:13px;
+color:#9aa7b3;
+user-select:none;
+transition:.2s;
+}
+
+.toggle input{
+display:none;
+}
+
+/* trilho */
+
+.toggleTrack{
+
+width:42px;
+height:20px;
+
+background:#0c1218;
+
+border-radius:20px;
+
+position:relative;
+
+transition:.25s;
+
+box-shadow:
+inset 0 0 4px rgba(0,0,0,0.7);
+
+}
+
+/* bolinha */
+
+.toggleDot{
+
+width:16px;
+height:16px;
+
+background:#666;
+
+border-radius:50%;
+
+position:absolute;
+
+top:2px;
+left:2px;
+
+transition:.25s;
+
+}
+
+/* hover */
+
+.toggle:hover{
+color:#e8edf2;
+}
+
+/* ativado */
+
+.toggle input:checked + .toggleTrack{
+
+background:linear-gradient(90deg,#00ff88,#00cc66);
+
+box-shadow:
+0 0 8px rgba(0,255,136,0.6);
+
+}
+
+/* mover bolinha */
+
+.toggle input:checked + .toggleTrack .toggleDot{
+
+left:24px;
+
+background:white;
+
+box-shadow:
+0 0 6px rgba(255,255,255,0.8);
+
+}
+
+/* texto ativo */
+
+.toggle input:checked ~ .toggleText{
+
+color:#00ff88;
+
+text-shadow:0 0 6px rgba(0,255,136,0.6);
+
+}
+/* ===============================
+TOGGLE MMO STYLE
+=============================== */
+
+.checkboxGroup{
+display:flex;
+gap:26px;
+justify-content:center;
+margin-bottom:14px;
+flex-wrap:wrap;
+}
+
+.toggle{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+font-size:13px;
+color:#9aa7b3;
+transition:.2s;
+user-select:none;
+}
+
+.toggle input{
+display:none;
+}
+
+/* trilho */
+
+.toggleTrack{
+
+width:42px;
+height:20px;
+
+background:#0c1218;
+
+border-radius:20px;
+
+position:relative;
+
+transition:.25s;
+
+box-shadow:
+inset 0 0 4px rgba(0,0,0,0.7);
+
+}
+
+/* bolinha */
+
+.toggleDot{
+
+width:16px;
+height:16px;
+
+background:#666;
+
+border-radius:50%;
+
+position:absolute;
+
+top:2px;
+left:2px;
+
+transition:.25s;
+
+}
+
+/* hover */
+
+.toggle:hover .toggleText{
+color:#e8edf2;
+}
+
+/* ativo */
+
+.toggle input:checked + .toggleTrack{
+
+background:linear-gradient(90deg,#00ff88,#00cc66);
+
+box-shadow:
+0 0 8px rgba(0,255,136,0.6);
+
+}
+
+/* mover bolinha */
+
+.toggle input:checked + .toggleTrack .toggleDot{
+
+left:24px;
+
+background:white;
+
+box-shadow:
+0 0 6px rgba(255,255,255,0.8);
+
+}
+
+/* texto ativo */
+
+.toggle input:checked ~ .toggleText{
+
+color:#00ff88;
+
+text-shadow:0 0 6px rgba(0,255,136,0.7);
+
+}
+
+/* animação do raio */
+
+.toggleText{
+transition:.2s;
+}
+
+.toggle input:checked ~ .toggleText::before{
+
+animation:buffPulse 1.4s infinite;
+
+}
+
+@keyframes buffPulse{
+
+0%{filter:brightness(1)}
+50%{filter:brightness(1.6)}
+100%{filter:brightness(1)}
+
+}
+.toggleText{
+display:flex;
+align-items:center;
+gap:6px;
+}
+
+.toggleText::before{
+content:"";
+}
+.copyBtn{
+
+margin-top:10px;
+
+width:100%;
+
+padding:10px;
+
+background:linear-gradient(145deg,#00e0ff,#0088ff);
+
+border:none;
+
+border-radius:8px;
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.copyBtn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 10px rgba(0,224,255,0.7);
+
+}
+/* ===============================
+TOGGLE SWITCH MMO STYLE
+=============================== */
+
+.checkboxGroup{
+display:flex;
+gap:30px;
+justify-content:center;
+margin-bottom:16px;
+flex-wrap:wrap;
+}
+
+.toggle{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+font-size:13px;
+color:#9aa7b3;
+user-select:none;
+transition:.2s;
+}
+
+.toggle input{
+display:none;
+}
+
+/* trilho */
+
+.toggleTrack{
+width:44px;
+height:22px;
+background:#0c1218;
+border-radius:20px;
+position:relative;
+transition:.25s;
+box-shadow:inset 0 0 5px rgba(0,0,0,0.7);
+}
+
+/* bolinha */
+
+.toggleDot{
+width:18px;
+height:18px;
+background:#666;
+border-radius:50%;
+position:absolute;
+top:2px;
+left:2px;
+transition:.25s;
+}
+
+/* hover */
+
+.toggle:hover .toggleText{
+color:#e8edf2;
+}
+
+/* ativo */
+
+.toggle input:checked + .toggleTrack{
+background:linear-gradient(90deg,#00ff88,#00cc66);
+box-shadow:0 0 8px rgba(0,255,136,0.6);
+}
+
+/* mover bolinha */
+
+.toggle input:checked + .toggleTrack .toggleDot{
+left:24px;
+background:white;
+box-shadow:0 0 6px rgba(255,255,255,0.9);
+}
+
+/* texto ativo */
+
+.toggle input:checked ~ .toggleText{
+color:#00ff88;
+text-shadow:0 0 6px rgba(0,255,136,0.7);
+}
+
+/* animação leve */
+
+.toggle input:checked ~ .toggleText{
+animation:buffPulse 1.5s infinite;
+}
+
+@keyframes buffPulse{
+0%{filter:brightness(1)}
+50%{filter:brightness(1.5)}
+100%{filter:brightness(1)}
+}
+
+/* ===============================
+BOTÃO COPIAR RESULTADO
+=============================== */
+
+.copyBtn{
+
+margin-top:12px;
+
+width:100%;
+
+padding:11px;
+
+border:none;
+
+border-radius:8px;
+
+background:linear-gradient(145deg,#00e0ff,#0088ff);
+
+color:white;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.2s;
+
+}
+
+.copyBtn:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 12px rgba(0,224,255,0.7);
+
+}
+/* ===============================
+   GLOBAL
+=============================== */
+
+body{
+background: radial-gradient(circle at top,#1b2735,#090a0f);
+color:#e6edf3;
+font-family:'Segoe UI',Arial,sans-serif;
+}
+
+/* ===============================
+   INPUTS DESTACADOS
+=============================== */
+
+input[type="number"],
+input[type="text"],
+select{
+
+background:#0f1624;
+border:1px solid #2a3a55;
+color:#e6edf3;
+border-radius:6px;
+padding:8px 10px;
+transition:all .2s ease;
+}
+
+input:focus,
+select:focus{
+outline:none;
+border-color:#2ecc71;
+box-shadow:0 0 8px rgba(46,204,113,.6);
+background:#0d1420;
+}
+
+/* Skill atual destaque */
+
+.skill-atual{
+border:1px solid #3fa9f5;
+box-shadow:0 0 6px rgba(63,169,245,.5);
+}
+
+/* Skill alvo */
+
+.skill-alvo{
+border:1px solid #f1c40f;
+box-shadow:0 0 6px rgba(241,196,15,.5);
+}
+
+/* ===============================
+   BOTÕES VOCAÇÃO / SKILL
+=============================== */
+
+.btn-select{
+
+background:#162238;
+border:1px solid #2c3e60;
+color:#cdd9ed;
+padding:8px 14px;
+border-radius:6px;
+transition:all .2s;
+cursor:pointer;
+}
+
+.btn-select:hover{
+background:#1d2f4d;
+border-color:#3fa9f5;
+}
+
+.btn-select.active{
+background:#3fa9f5;
+border-color:#3fa9f5;
+color:white;
+box-shadow:0 0 10px rgba(63,169,245,.6);
+}
+
+/* ===============================
+   BARRAS DE PROGRESSO
+=============================== */
+
+.progress{
+height:16px;
+background:#0d1420;
+border-radius:6px;
+overflow:hidden;
+border:1px solid #1c2b44;
+}
+
+.progress-bar{
+
+background:linear-gradient(90deg,#2ecc71,#27ae60);
+box-shadow:0 0 10px rgba(46,204,113,.7);
+transition:width .4s ease;
+}
+
+/* ===============================
+   RESULTADO
+=============================== */
+
+.result-box{
+
+background:#0f1624;
+border:1px solid #2a3a55;
+border-radius:8px;
+padding:12px;
+margin-top:10px;
+}
+
+/* ===============================
+   VARINHAS
+=============================== */
+
+.wand-option{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background:#121b2c;
+border:1px solid #23304a;
+
+padding:8px 12px;
+border-radius:6px;
+
+margin-bottom:6px;
+transition:.2s;
+}
+
+.wand-option:hover{
+border-color:#3fa9f5;
+background:#16233a;
+}
+
+/* ===============================
+   NOVO SELETOR (DUMMY / EVENT)
+=============================== */
+
+.toggle-group{
+
+display:flex;
+gap:25px;
+align-items:center;
+margin-top:8px;
+}
+
+.toggle{
+
+display:flex;
+align-items:center;
+gap:8px;
+cursor:pointer;
+font-size:14px;
+color:#cdd9ed;
+}
+
+.toggle input{
+display:none;
+}
+
+.switch{
+
+width:38px;
+height:18px;
+
+background:#1a263d;
+border-radius:20px;
+position:relative;
+
+transition:.25s;
+}
+
+.switch::after{
+
+content:"";
+width:14px;
+height:14px;
+
+background:white;
+border-radius:50%;
+
+position:absolute;
+top:2px;
+left:2px;
+
+transition:.25s;
+}
+
+.toggle input:checked + .switch{
+background:#4f6b5a;
+}
+
+.toggle input:checked + .switch::after{
+left:22px;
+}
+
+/* ===============================
+   ICONES
+=============================== */
+
+.icon{
+
+opacity:.8;
+margin-right:4px;
+}
+
+/* ===============================
+   TITULOS
+=============================== */
+
+h3{
+font-weight:600;
+margin-bottom:10px;
+color:#dce7ff;
+}
+
+/* ===============================
+   ANIMAÇÃO SUTIL
+=============================== */
+
+@keyframes glow{
+
+0%{box-shadow:0 0 6px rgba(46,204,113,.4)}
+50%{box-shadow:0 0 14px rgba(46,204,113,.9)}
+100%{box-shadow:0 0 6px rgba(46,204,113,.4)}
+
+}
+
+.progress-bar{
+animation:glow 3s infinite;
+}
+/* Base do toggle */
+.toggleTrack {
+    width: 42px;
+    height: 20px;
+    background: #2b2f33; /* fundo cinza escuro */
+    border-radius: 20px;
+    position: relative;
+    transition: 0.2s;
+}
+
+.toggleDot {
+    width: 16px;
+    height: 16px;
+    background: #bfc7cf; /* ponto cinza claro */
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: 0.2s;
+}
+
+/* Toggle ligado */
+.toggle input:checked + .toggleTrack {
+    background: #3a5f7f; /* azul neutro */
+}
+
+.toggle input:checked + .toggleTrack .toggleDot {
+    left: 22px; /* move o ponto para a direita */
+}
+/* Toggle texto */
+.toggleText {
+    margin-left: 8px;
+    font-size: 12px;
+    color: #bfc7cf; /* cinza claro padrão */
+    transition: color 0.2s;
+}
+
+/* Toggle ligado */
+.toggle input:checked ~ .toggleText {
+    color: #6c8ca0; /* azul neutro discreto */
+}
+body {
+    background: #0d0f14;
+    color: #d0d4dc;
+    font-family: 'Inter', sans-serif;
+}
+
+h1 {
+    text-align: center;
+    font-size: 36px;
+    margin-bottom: 35px;
+    color: #a0b0c0;
+}
+
+.card {
+    background: #141820;
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.4);
+}
+
+input, select {
+    background: #10141b;
+    border: 1px solid #2c2f38;
+    color: #d0d4dc;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.15s;
+}
+
+input:focus, select:focus {
+    border-color: #5f7a91;
+    box-shadow: none;
+}
+
+.selectorBtn {
+    background: #10141b;
+    border: 1px solid #2c2f38;
+    color: #c0c5cc;
     transition: all 0.2s;
 }
-.varinhaRow input:hover{transform:scale(1.05); border-color:#00e0ff;}
-.varinhaRow input:focus{
-    outline:none;
-    border-color:#00e0ff;
-    box-shadow:0 0 10px #00e0ff55;
-    background:rgba(14,19,25,1);
+
+.selectorBtn.active {
+    background: #3a5f7f; /* azul discreto */
+    color: #c0d0de;
+    border-color: #3a5f7f;
+}
+
+.percentFill,
+.progressBar {
+    background: #3a5f7f; /* azul discreto sólido */
+    box-shadow: none;
+}
+
+.toggle input:checked ~ .toggleTrack {
+    background: #3a5f7f; /* azul neutro */
+}
+
+.toggle input:checked ~ .toggleText {
+    color: #5f7a91; /* azul suave */
+}
+
+.toggleTrack {
+    background: #2c2f38;
+}
+
+.toggleDot {
+    background: #c0c5cc;
+}
+
+/* loyalty buttons */
+.loyaltyBtn {
+    background: #10141b;
+    border: 1px solid #2c2f38;
+    color: #c0c5cc;
+    transition: all 0.15s;
+}
+
+.loyaltyBtn.active {
+    background: #3a5f7f;
+    color: #c0d0de;
+    border-color: #3a5f7f;
 }
 </style>
 </head>
 <body>
 
 <div class="wrapper">
-<h1>⚔️ Global Exercise Calculator</h1>
+<h1>⚔️ Calculadora skills</h1>
 
 <div class="container">
 
 <!-- Primeira Calculadora -->
 <div class="card">
-<h2>Exercise Weapon</h2>
+<h2>Calculadora Skill Desejada</h2>
 <div class="row">
-<div class="field"><label>Skill Atual</label><input id="current" type="number" placeholder="Digite aqui" value="104"></div>
-<div class="field"><label>Skill Alvo</label><input id="target" type="number" placeholder="Digite aqui" value="105"></div>
+<div class="field"><label>Skill Atual</label><input id="current" type="number" value="104"></div>
+<div class="field"><label>Skill Alvo</label><input id="target" type="number" value="105"></div>
 </div>
 
 <div class="percentBox">
@@ -232,17 +1771,30 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 <label>Loyalty</label>
 <div class="loyaltyButtons" id="loyaltyButtons"></div>
 
-<div class="checkboxGroup">
-<label><input type="checkbox" id="dummy"> Training Dummy</label>
-<label><input type="checkbox" id="double"> Double Skill Event</label>
+<div class="toggle-group">
+
+<label class="toggle">
+<input type="checkbox" id="dummy">
+<span class="toggleTrack"><span class="toggleDot"></span></span>
+<span class="toggleText">🪵 Training Dummy</span>
+</label>
+
+<label class="toggle">
+<input type="checkbox" id="double">
+<span class="toggleTrack"><span class="toggleDot"></span></span>
+<span class="toggleText">⚡ Double Skill Event</span>
+</label>
+
 </div>
 
 <div class="result" id="result"></div>
+<!-- <button class="copyBtn" onclick="copyResult('result')">Copiar</button> -->
 </div>
 
-<!-- Segunda Calculadora permanece igual -->
+<!-- Segunda Calculadora -->
 <div class="card">
-<h2>Varinhas</h2>
+<h2>Varinhas na mão</h2>
+
 <div class="row">
 <div class="field"><label>Skill Atual</label><input id="current2" type="number" value="104"></div>
 <div class="field"><label>% Restante</label><input id="percent2" type="number" value="60"></div>
@@ -275,19 +1827,50 @@ input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.2)}
 <label>Loyalty</label>
 <div class="loyaltyButtons" id="loyaltyButtons2"></div>
 
-<div class="checkboxGroup">
-<label><input type="checkbox" id="dummy2"> Training Dummy</label>
-<label><input type="checkbox" id="double2"> Double Skill Event</label>
+<div class="toggle-group">
+
+<label class="toggle">
+<input type="checkbox" id="dummy2">
+<span class="toggleTrack"><span class="toggleDot"></span></span>
+<span class="toggleText">🪵 Training Dummy</span>
+</label>
+
+<label class="toggle">
+<input type="checkbox" id="double2">
+<span class="toggleTrack"><span class="toggleDot"></span></span>
+<span class="toggleText">⚡ Double Skill Event</span>
+</label>
+
 </div>
 
+<!-- BARRA DE PROGRESSO -->
+<div class="progressContainer">
+
+<span id="skillLeft2">104</span>
+
+<div class="progressWrap">
+<div class="progressBar" id="bar2"></div>
+</div>
+
+<span id="skillRight2">105</span>
+
+</div>
+
+<!-- RESULTADO -->
 <div class="result" id="result2"></div>
-<div class="progressWrap"><div class="progressBar" id="bar2"></div></div>
+<!-- <button class="copyBtn" onclick="copyResult('result2')">Copiar</button> -->
+
+</div>
+
 
 </div>
 </div>
 </div>
+
 
 <script>
+    document.addEventListener("DOMContentLoaded", () => {
+    let lastPercent = 0
 // BASE & Vocations
 const BASE=1600;
 const vocation={ knight:{magic:3,melee:1.1,fist:1.1,distance:1.4,shield:1.1},
@@ -303,6 +1886,8 @@ function formatTime(sec){let h=Math.floor(sec/3600),m=Math.floor((sec%3600)/60),
 
 // Primeira Calculadora
 let selectedVoc="knight",loyalty=0
+
+
 const currentInput=document.getElementById("current"),targetInput=document.getElementById("target")
 const skillInput=document.getElementById("skill"),dummyInput=document.getElementById("dummy"),doubleInput=document.getElementById("double")
 const result=document.getElementById("result")
@@ -316,7 +1901,8 @@ for(let i=0;i<=50;i+=5){let btn=document.createElement("div");btn.className="loy
 function calc(){
 let current=parseInt(currentInput.value),target=parseInt(targetInput.value),percent=parseFloat(percentSlider.value),skill=skillInput.value
 let dummy=dummyInput.checked,dbl=doubleInput.checked
-let pts=(Z(target,selectedVoc,skill)-Z(current,selectedVoc,skill))*(1-percent/100)
+let remaining = (100 - percent)/100;  // quanto ainda falta
+let pts = (Z(target, selectedVoc, skill) - Z(current, selectedVoc, skill)) * remaining;
 pts/=1+loyalty;if(dummy)pts/=1.1;if(dbl)pts/=2
 let lasting=Math.floor(pts/weaponPoints.lasting);pts%=weaponPoints.lasting
 let durable=Math.floor(pts/weaponPoints.durable);pts%=weaponPoints.durable
@@ -324,6 +1910,42 @@ let regular=Math.ceil(pts/weaponPoints.regular)
 let totalTime=regular*weaponTime.regular.duration+durable*weaponTime.durable.duration+lasting*weaponTime.lasting.duration
 let totalCost=regular*weaponTime.regular.cost+durable*weaponTime.durable.cost+lasting*weaponTime.lasting.cost
 result.innerHTML=`<div><span>Regular</span><span>${regular}</span></div><div><span>Durable</span><span>${durable}</span></div><div><span>Lasting</span><span>${lasting}</span></div><div><span>Tempo</span><span>${formatTime(totalTime)}</span></div><div><span>Custo</span><span>${totalCost.toLocaleString()} gp</span></div>`
+
+
+}
+function calc() {
+    let current = parseInt(currentInput.value),
+        target = parseInt(targetInput.value),
+        skill = skillInput.value,
+        percent = parseFloat(percentSlider.value); // % já completado da skill atual
+
+    let dummy = dummyInput.checked,
+        dbl = doubleInput.checked;
+
+    // experiência total até o nível atual + % dentro do nível
+    let currentExp = Z(current, selectedVoc, skill) + N(current, selectedVoc, skill) * (percent / 100);
+    let targetExp = Z(target, selectedVoc, skill);
+
+    // pontos restantes
+    let pts = targetExp - currentExp;
+
+    // aplica modificadores
+    pts /= 1 + loyalty;
+    if(dummy) pts /= 1.1;
+    if(dbl) pts /= 2;
+
+    let lasting = Math.floor(pts / weaponPoints.lasting); pts %= weaponPoints.lasting;
+    let durable = Math.floor(pts / weaponPoints.durable); pts %= weaponPoints.durable;
+    let regular = Math.ceil(pts / weaponPoints.regular);
+
+    let totalTime = regular * weaponTime.regular.duration + durable * weaponTime.durable.duration + lasting * weaponTime.lasting.duration;
+    let totalCost = regular * weaponTime.regular.cost + durable * weaponTime.durable.cost + lasting * weaponTime.lasting.cost;
+
+    result.innerHTML = `<div><span>Regular</span><span>${regular}</span></div>
+                        <div><span>Durable</span><span>${durable}</span></div>
+                        <div><span>Lasting</span><span>${lasting}</span></div>
+                        <div><span>Tempo</span><span>${formatTime(totalTime)}</span></div>
+                        <div><span>Custo</span><span>${totalCost.toLocaleString()} gp</span></div>`;
 }
 
 // Segunda Calculadora atualizada
@@ -341,6 +1963,7 @@ for(let i=0;i<=50;i+=5){let btn=document.createElement("div");btn.className="loy
 
 function calcReach(){
     let skill=parseInt(current2.value),percent=parseFloat(percent2Input.value)
+
     let loyalty=parseFloat(document.querySelector("#loyaltyButtons2 .active").innerText)/100
     let reg=parseInt(regular2.value)||0, dur=parseInt(durable2.value)||0, last=parseInt(lasting2.value)||0
     let dummyChk=dummy2.checked, dblChk=double2.checked
@@ -376,8 +1999,26 @@ function calcReach(){
     } else {
         message+=`<span>Você ganhou <strong>${(percentInSkill-(100-percent)).toFixed(2)}%</strong> dentro da skill <strong>${skill}</strong> | Faltam: <strong>${remainingPercent.toFixed(2)}%</strong> para skill <strong>${skill+1}</strong></span>`
         bar2.style.width=percentInSkill+"%"
-    }
+        let diff = percentInSkill - lastPercent
 
+if(diff > 0.05){
+
+let float = document.createElement("div")
+float.className = "skillFloat"
+float.innerText = "+" + diff.toFixed(2) + "%"
+
+bar2.parentElement.appendChild(float)
+
+setTimeout(()=>float.remove(),1200)
+
+}
+
+lastPercent = percentInSkill
+
+
+    }
+document.getElementById("skillLeft2").innerText = newSkill
+document.getElementById("skillRight2").innerText = newSkill + 1
     result2.innerHTML=message
 }
 
@@ -389,6 +2030,8 @@ document.querySelectorAll("input").forEach(el=>{
 updatePercentFill(0)
 calc()
 calcReach()
+});
+    
 </script>
 
 </body>
